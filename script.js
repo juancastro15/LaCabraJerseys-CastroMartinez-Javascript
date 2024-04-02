@@ -9,24 +9,24 @@ function menu() {
         // Se muestra el menú al usuario y se obtiene la opción seleccionada
         opcion = Number(prompt(
             "Ingrese opción:\n" +
-            "1. Manzana - $1500\n" +
-            "2. Naranja - $2000\n" +
-            "3. Banana - $2500\n" +
+            "1. Manzana - $10\n" +
+            "2. Naranja - $20\n" +
+            "3. Banana - $30\n" +
             "0. Salir"
         ));
 
         // Dependiendo de la opción seleccionada por el usuario, se llama a la función agregarAlCarrito
         if (opcion === 1) {
-            total = agregarAlCarrito("manzana", 1500, total); // Se pasa el nombre de la fruta, el precio por kilo y el total actual
+            total = agregarAlCarrito("manzana", 10, total); // Se pasa el nombre de la fruta, el precio por kilo y el total actual
         } else if (opcion === 2) {
-            total = agregarAlCarrito("naranja", 2000, total); // Se pasa el nombre de la fruta, el precio por kilo y el total actual
+            total = agregarAlCarrito("naranja", 20, total);
         } else if (opcion === 3) {
-            total = agregarAlCarrito("banana", 2500, total); // Se pasa el nombre de la fruta, el precio por kilo y el total actual
+            total = agregarAlCarrito("banana", 30, total);
         }
     } while (opcion !== 0); // El ciclo se repite mientras la opción ingresada no sea 0 (salir)
 
     // Una vez que el usuario selecciona salir (opcion = 0), se muestra el total de la compra
-    alert("El total de su compra es de $" + total.toFixed(2)); // Se redondea el total a dos decimales y se muestra en un alert
+    alert("El total de su compra es de $" + total); // Se redondea el total a dos decimales y se muestra en un alert
 }
 
 // Definimos una función llamada agregarAlCarrito que recibe el nombre de la fruta, el precio por kilo y el total actual
@@ -41,10 +41,10 @@ function agregarAlCarrito(fruta, precioPorKilo, total) {
     total += subtotal;
 
     // Se muestra un mensaje indicando que se agregó la fruta al carrito y el total del subtotal
-    alert("Se agregaron " + cantidad + " gramos de " + fruta + " al carrito por un total de: $" + subtotal.toFixed(2));
+    alert("Se agregaron " + cantidad + " gramos de " + fruta + " al carrito por un total de: $" + subtotal);
 
     // Se muestra el total actual de la compra
-    alert("El total hasta el momento es: $" + total.toFixed(2));
+    alert("El total hasta el momento es: $" + total);
 
     // Se retorna el total actualizado
     return total;
