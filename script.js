@@ -1,54 +1,97 @@
-// Definimos una función llamada menu
-function menu() {
-    // Declaración de variables opcion y total
-    let opcion;
-    let total = 0;
+// Mensaje de bienvenida
+alert("¡Bienvenido a La Cabra Jerseys!");
 
-    // Ciclo do-while para mostrar el menú y recibir la selección del usuario
-    do {
-        // Se muestra el menú al usuario y se obtiene la opción seleccionada
-        opcion = Number(prompt(
-            "Ingrese opción:\n" +
-            "1. Manzana - $10\n" +
-            "2. Naranja - $20\n" +
-            "3. Banana - $30\n" +
-            "0. Salir"
-        ));
+// Definir camisetas de fútbol
+const camisetas = [
+    { equipo: "Real Madrid", precio: 50, stock: 3 },
+    { equipo: "Barcelona", precio: 45, stock: 8 },
+    { equipo: "Manchester United", precio: 40, stock: 12 },
+    { equipo: "Juventus", precio: 55, stock: 6 },
+    { equipo: "Bayern Munich", precio: 60, stock: 7 },
+    { equipo: "Liverpool", precio: 50, stock: 1 },
+    { equipo: "Paris Saint-Germain", precio: 55, stock: 5 },
+    { equipo: "Manchester City", precio: 45, stock: 10 }
+];
 
-        // Dependiendo de la opción seleccionada por el usuario, se llama a la función agregarAlCarrito
-        if (opcion === 1) {
-            total = agregarAlCarrito("manzana", 10, total); // Se pasa el nombre de la fruta, el precio por kilo y el total actual
-        } else if (opcion === 2) {
-            total = agregarAlCarrito("naranja", 20, total);
-        } else if (opcion === 3) {
-            total = agregarAlCarrito("banana", 30, total);
+// Objeto carrito de compras
+const carrito = {
+    camisetas: [],
+    total: 0
+};
+
+// Función para agregar camiseta al carrito
+function agregarAlCarrito(equipo, cantidad) {
+    const camisetaEnStock = camisetas.find(item => item.equipo === equipo);
+
+    if (camisetaEnStock && camisetaEnStock.stock >= cantidad) {
+        carrito.camisetas.push({ equipo, precio: camisetaEnStock.precio, cantidad });
+        camisetaEnStock.stock -= cantidad;
+        alert(`¡Camiseta del ${equipo} agregada al carrito!`);
+    } else if (camisetaEnStock) {
+        alert(`Lo sentimos, la camiseta del ${equipo} no está disponible en la cantidad solicitada.`);
+    } else {
+        alert(`Lo sentimos, la opción "${equipo}" no está disponible en este momento.`);
+    }
+}
+
+// Función para calcular el total de la compra
+function calcularTotal() {
+    carrito.total = carrito.camisetas.reduce((total, camiseta) => total + (camiseta.precio * camiseta.cantidad), 0);
+}
+
+// Función para procesar el pago
+function procesarPago() {
+    calcularTotal();
+    const confirmacion = confirm(`El total de la compra es $${carrito.total}. ¿Desea proceder con el pago?`);
+
+    if (confirmacion) {
+        const nombre = prompt("Ingrese su nombre:");
+        const tarjeta = prompt("Ingrese el número de su tarjeta de crédito:");
+
+        if (nombre && tarjeta) {
+            alert(`¡Gracias por su compra, ${nombre}! El pago de $${carrito.total} ha sido procesado con éxito.`);
+        } else {
+            alert("Por favor, complete todos los campos para procesar el pago.");
         }
-    } while (opcion !== 0); // El ciclo se repite mientras la opción ingresada no sea 0 (salir)
-
-    // Una vez que el usuario selecciona salir (opcion = 0), se muestra el total de la compra
-    alert("El total de su compra es de $" + total); // Se redondea el total a dos decimales y se muestra en un alert
+    } else {
+        alert("¡Gracias por visitarnos! Esperamos verte de nuevo pronto.");
+    }
 }
 
-// Definimos una función llamada agregarAlCarrito que recibe el nombre de la fruta, el precio por kilo y el total actual
-function agregarAlCarrito(fruta, precioPorKilo, total) {
-    // Se pide al usuario que ingrese la cantidad de gramos de la fruta que desea agregar al carrito
-    let cantidad = Number(prompt("Ingrese cantidad de gramos"));
+// Interfaz de usuario
+function iniciarSimulador() {
+    let continuar = true;
 
-    // Se calcula el subtotal multiplicando la cantidad ingresada por el precio por kilo y dividiéndolo por 1000 para convertir a kilos
-    let subtotal = precioPorKilo * cantidad / 1000;
+    while (continuar) {
+        const opcion = prompt(`Seleccione una opción:
+        1. Agregar una camiseta al carrito
+        2. Proceder al pago
+        3. Salir`);
 
-    // Se actualiza el total sumando el subtotal al total actual
-    total += subtotal;
+        switch (opcion) {
+            case "1":
+                const equipo = prompt("Ingrese el equipo que desea:");
+                const cantidad = parseInt(prompt("Ingrese la cantidad:"));
 
-    // Se muestra un mensaje indicando que se agregó la fruta al carrito y el total del subtotal
-    alert("Se agregaron " + cantidad + " gramos de " + fruta + " al carrito por un total de: $" + subtotal);
-
-    // Se muestra el total actual de la compra
-    alert("El total hasta el momento es: $" + total);
-
-    // Se retorna el total actualizado
-    return total;
+                if (equipo && cantidad) {
+                    agregarAlCarrito(equipo, cantidad);
+                } else {
+                    alert("Por favor, ingrese un equipo y una cantidad válida.");
+                }
+                break;
+            case "2":
+                procesarPago();
+                continuar = false;
+                break;
+            case "3":
+                alert("¡Gracias por visitarnos! Hasta luego.");
+                continuar = false;
+                break;
+            default:
+                alert("Por favor, seleccione una opción válida.");
+        }
+    }
 }
 
-// Llamamos a la función menu para iniciar el proceso de compra
-menu();
+// Iniciar el simulador
+iniciarSimulador();
