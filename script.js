@@ -21,14 +21,16 @@ const carrito = {
 
 // Función para agregar camiseta al carrito
 function agregarAlCarrito(equipo, cantidad) {
-    const camisetaEnStock = camisetas.find(item => item.equipo === equipo);
+    const equipoLowerCase = equipo.toLowerCase(); // Convertir entrada del usuario a minúsculas
+
+    const camisetaEnStock = camisetas.find(item => item.equipo.toLowerCase() === equipoLowerCase);
 
     if (camisetaEnStock && camisetaEnStock.stock >= cantidad) {
-        carrito.camisetas.push({ equipo, precio: camisetaEnStock.precio, cantidad });
+        carrito.camisetas.push({ equipo: camisetaEnStock.equipo, precio: camisetaEnStock.precio, cantidad });
         camisetaEnStock.stock -= cantidad;
-        alert(`¡Camiseta del ${equipo} agregada al carrito!`);
+        alert(`¡Camiseta del ${camisetaEnStock.equipo} agregada al carrito!`);
     } else if (camisetaEnStock) {
-        alert(`Lo sentimos, la camiseta del ${equipo} no está disponible en la cantidad solicitada.`);
+        alert(`Lo sentimos, la camiseta del ${camisetaEnStock.equipo} no está disponible en la cantidad solicitada.`);
     } else {
         alert(`Lo sentimos, la opción "${equipo}" no está disponible en este momento.`);
     }
@@ -71,12 +73,21 @@ function iniciarSimulador() {
         switch (opcion) {
             case "1":
                 const equipo = prompt("Ingrese el equipo que desea:");
-                const cantidad = parseInt(prompt("Ingrese la cantidad:"));
+                const camisetaEnStock = camisetas.find(item => item.equipo.toLowerCase() === equipo.toLowerCase());
 
-                if (equipo && cantidad) {
+                if (camisetaEnStock && camisetaEnStock.stock >= 1) {
+                    const cantidad = parseInt(prompt("Ingrese la cantidad:"));
+
+                    if (!cantidad || cantidad <= 0) {
+                        alert("Por favor, ingrese una cantidad válida.");
+                        continue;
+                    }
+
                     agregarAlCarrito(equipo, cantidad);
+                } else if (camisetaEnStock) {
+                    alert(`Lo sentimos, la camiseta del ${camisetaEnStock.equipo} no está disponible en la cantidad solicitada.`);
                 } else {
-                    alert("Por favor, ingrese un equipo y una cantidad válida.");
+                    alert(`Lo sentimos, la opción "${equipo}" no está disponible en este momento.`);
                 }
                 break;
             case "2":
