@@ -19,6 +19,20 @@ const carrito = {
     total: 0
 };
 
+// Función para filtrar camisetas por precio igual o inferior a cierto valor
+function filtrarPorPrecioMaximo(precioMaximo) {
+    return camisetas.filter(camiseta => camiseta.precio <= precioMaximo);
+}
+
+// Función para mostrar la información de los objetos
+function mostrarInfoCamisetas() {
+    let mensaje = "Ingrese el equipo que desea:\n\n";
+    camisetas.forEach((camiseta) => {
+        mensaje += `${camiseta.equipo} - $${camiseta.precio} - Stock: ${camiseta.stock}\n`;
+    });
+    return mensaje;
+}
+
 // Función para agregar camiseta al carrito
 function agregarAlCarrito(equipo, cantidad) {
     const equipoLowerCase = equipo.toLowerCase(); // Convertir entrada del usuario a minúsculas
@@ -72,7 +86,7 @@ function iniciarSimulador() {
 
         switch (opcion) {
             case "1":
-                const equipo = prompt("Ingrese el equipo que desea:");
+                const equipo = prompt(mostrarInfoCamisetas());
                 const camisetaEnStock = camisetas.find(item => item.equipo.toLowerCase() === equipo.toLowerCase());
 
                 if (camisetaEnStock && camisetaEnStock.stock >= 1) {
