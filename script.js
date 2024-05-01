@@ -1,16 +1,16 @@
 // Mensaje de bienvenida
 alert("¡Bienvenido a La Cabra Jerseys!");
 
-// Definir camisetas de fútbol
+// Defino mis camisetas de fútbol
 const camisetas = [
-    { equipo: "Real Madrid", precio: 50, stock: 3 },
-    { equipo: "Barcelona", precio: 45, stock: 8 },
-    { equipo: "Manchester United", precio: 40, stock: 12 },
-    { equipo: "Juventus", precio: 55, stock: 6 },
-    { equipo: "Bayern Munich", precio: 60, stock: 7 },
-    { equipo: "Liverpool", precio: 50, stock: 1 },
-    { equipo: "Paris Saint-Germain", precio: 55, stock: 5 },
-    { equipo: "Manchester City", precio: 45, stock: 10 }
+    { equipo: "Real Madrid", precio: 50, stock: 3, rutaImagen: "real-madrid.webp" },
+    { equipo: "Barcelona", precio: 45, stock: 8, rutaImagen: "barcelona-fc.webp" },
+    { equipo: "Manchester United", precio: 40, stock: 12, rutaImagen: "man-united.jpeg" },
+    { equipo: "Juventus", precio: 55, stock: 6, rutaImagen: "juventus.png" },
+    { equipo: "Bayern Munich", precio: 60, stock: 7, rutaImagen: "bayern.webp" },
+    { equipo: "Liverpool", precio: 50, stock: 1, rutaImagen: "liverpool.webp" },
+    { equipo: "Paris Saint-Germain", precio: 55, stock: 5, rutaImagen: "psg.jpeg" },
+    { equipo: "Manchester City", precio: 45, stock: 10, rutaImagen: "man-city.jpeg" }
 ];
 
 // Objeto carrito de compras
