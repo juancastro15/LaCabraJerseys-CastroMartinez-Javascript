@@ -1,0 +1,37 @@
+.color {
+    background-color: #111111;
+}
+
+.brand div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand div h1 {
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fdfdcb;
+}
+
+.intro {
+    border-top: 2px solid #ffd100;
+    border-bottom: 2px solid #ffd100;
+}
+
+.intro div p {
+    color: #fdfdcb;
+    margin: 25px 10px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.cata h2 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+          
+}
