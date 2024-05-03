@@ -30,8 +30,20 @@
 }
 
 .cata h2 {
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Bungee Hairline", sans-serif;
     font-weight: 400;
     font-style: normal;
-          
+    color: #fdfdcb;
+    text-align: center;
+}
+
+
+.copyr {
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #ffd100;
+}
+
+.copyr div p {
+    color: #333333;
 }

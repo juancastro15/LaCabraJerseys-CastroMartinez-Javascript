@@ -13,6 +13,8 @@ const camisetas = [
     { equipo: "Manchester City", precio: 45, stock: 10, rutaImagen: "man-city.jpeg" }
 ];
 
+
+
 // Objeto carrito de compras
 const carrito = {
     camisetas: [],
