@@ -1,20 +1,38 @@
 // Mensaje de bienvenida
-alert("¡Bienvenido a La Cabra Jerseys!");
+/* alert("¡Bienvenido a La Cabra Jerseys!"); */
 
 // Defino mis camisetas de fútbol
-const camisetas = [
-    { equipo: "Real Madrid", precio: 50, stock: 3, rutaImagen: "real-madrid.webp" },
-    { equipo: "Barcelona", precio: 45, stock: 8, rutaImagen: "barcelona-fc.webp" },
-    { equipo: "Manchester United", precio: 40, stock: 12, rutaImagen: "man-united.jpeg" },
-    { equipo: "Juventus", precio: 55, stock: 6, rutaImagen: "juventus.png" },
-    { equipo: "Bayern Munich", precio: 60, stock: 7, rutaImagen: "bayern.webp" },
-    { equipo: "Liverpool", precio: 50, stock: 1, rutaImagen: "liverpool.webp" },
-    { equipo: "Paris Saint-Germain", precio: 55, stock: 5, rutaImagen: "psg.jpeg" },
-    { equipo: "Manchester City", precio: 45, stock: 10, rutaImagen: "man-city.jpeg" }
+let listaProductos = [
+    {id: 1, equipo: "Real Madrid", precio: 50, stock: 3, rutaImagen: "real-madrid.webp" },
+    {id: 2, equipo: "Barcelona", precio: 45, stock: 8, rutaImagen: "barcelona-fc.webp" },
+    {id: 3, equipo: "Manchester United", precio: 40, stock: 12, rutaImagen: "man-united.jpeg" },
+    {id: 4, equipo: "Juventus", precio: 55, stock: 6, rutaImagen: "juventus.png" },
+    {id: 5, equipo: "Bayern Munich", precio: 60, stock: 7, rutaImagen: "bayern.webp" },
+    {id: 6, equipo: "Liverpool", precio: 50, stock: 1, rutaImagen: "liverpool.webp" },
+    {id: 7, equipo: "Paris Saint-Germain", precio: 55, stock: 5, rutaImagen: "psg.jpeg" },
+    {id: 8, equipo: "Manchester City", precio: 45, stock: 10, rutaImagen: "man-city.webp" }
 ];
 
+//Creando las tarjetas del producto
+function crearTarjetasDeProductos(productos) {
+    let contenedorProductos = document.getElementById("contenedorProductos");
+
+    productos.forEach(producto => {
+        let tarjetaProducto = document.createElement("div");
+        tarjetaProducto.innerHTML = `
+        <img src="./camisetas/${producto.rutaImagen}" />
+        <h3>${producto.equipo}</h3>
+        <h4>Precio: ${producto.precio}</h4>
+        `;
+
+        contenedorProductos.appendChild(tarjetaProducto);
+    });
+}
+
+crearTarjetasDeProductos(listaProductos);
 
 
+/*
 // Objeto carrito de compras
 const carrito = {
     camisetas: [],
@@ -122,3 +140,4 @@ function iniciarSimulador() {
 
 // Iniciar el simulador
 iniciarSimulador();
+*/

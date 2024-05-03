@@ -37,6 +37,62 @@
     text-align: center;
 }
 
+.cata img {
+    width: auto;
+    height: 200px;
+}
+
+#contenedorProductos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilizo las tarjetas de producto */
+#contenedorProductos div {
+    background-color: #333333;
+    border: 2px solid #ffd100;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    width: 200px;
+    /* Ajusta el tamaño de las tarjetas según la pantalla */
+    position: relative;
+}
+
+#contenedorProductos div::after {
+    content: "Add to Cart";
+    padding-top: 1.25em;
+    padding-left: 1.25em;
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    border-radius: 3px;
+    background: #ffd100;
+    color: #fff;
+    height: 2.5em;
+    width: 91%;
+    transition: all 80ms;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0;
+}
+
+#contenedorProductos div:hover::after {
+    bottom: 0;
+    opacity: 1;
+}
+
+#contenedorProductos div:active {
+    transform: scale(0.98);
+}
+
+#contenedorProductos div:active::after {
+    content: "Added !";
+    height: 3.125em;
+}
 
 .copyr {
     display: flex;
@@ -45,5 +101,5 @@
 }
 
 .copyr div p {
-    color: #333333;
+    color: #fdfdcb;
 }
