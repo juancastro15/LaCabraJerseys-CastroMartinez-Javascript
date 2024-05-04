@@ -63,14 +63,27 @@
     <!-- Inicio del Main -->
     <main class="cata">
         <h2>Nuestro Catalogo</h2>
+        <!-- Agrega un input para el buscador -->
+        <input type="text" id="buscador" placeholder="Buscar producto...">
         <div id="contenedorProductos"></div>
     </main>
     <!-- Fin del Main -->
     
     <!-- Inicio del carrito -->
-    <aside class="carrito">
+    <aside id="carrito" class="oculto">
         <h2>Carrito de Compras</h2>
-        <ul id="listaCarrito"></ul>
+        <table id="tablaCarrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="listaCarrito"></tbody>
+        </table>
+        <p id="totalCarrito">Total: $0</p>
     </aside>
     <!-- Fin del carrito -->
 

@@ -1,6 +1,3 @@
-// Mensaje de bienvenida
-/* alert("¡Bienvenido a La Cabra Jerseys!"); */
-
 // Defino mis camisetas de fútbol
 let listaProductos = [
     {id: 1, equipo: "Real Madrid", precio: 50, stock: 3, rutaImagen: "real-madrid.webp" },
@@ -13,23 +10,60 @@ let listaProductos = [
     {id: 8, equipo: "Manchester City", precio: 45, stock: 10, rutaImagen: "man-city.webp" }
 ];
 
-//Creando las tarjetas del producto
+// Variables
+const contenedorProductos = document.getElementById("contenedorProductos");
+const listaCarrito = document.getElementById("listaCarrito");
+let carrito = [];
+
+// Función para agregar un producto al carrito
+function agregarAlCarrito(id) {
+    const producto = listaProductos.find(item => item.id === id);
+    const nuevoCarrito = [...carrito, producto]; // Creamos una nueva copia del carrito añadiendo el nuevo producto
+    carrito = nuevoCarrito; // Actualizamos la referencia del carrito
+    mostrarCarrito();
+}
+
+// Función para mostrar los productos en el carrito
+function mostrarCarrito() {
+    listaCarrito.innerHTML = "";
+    carrito.forEach(({ equipo }) => { // Desestructuración aquí
+        const li = document.createElement("li");
+        li.textContent = equipo; // Usamos la propiedad desestructurada directamente
+        listaCarrito.appendChild(li);
+    });
+}
+
+// Creando las tarjetas del producto
 function crearTarjetasDeProductos(productos) {
-    let contenedorProductos = document.getElementById("contenedorProductos");
-
+    contenedorProductos.innerHTML = ""; // Limpiamos el contenedor antes de agregar las tarjetas
     productos.forEach(producto => {
-        let tarjetaProducto = document.createElement("div");
+        const tarjetaProducto = document.createElement("div");
         tarjetaProducto.innerHTML = `
-        <img src="./camisetas/${producto.rutaImagen}" />
-        <h3>${producto.equipo}</h3>
-        <h4>Precio: ${producto.precio}</h4>
+            <img src="./camisetas/${producto.rutaImagen}" />
+            <h3>${producto.equipo}</h3>
+            <h4>Precio: ${producto.precio}</h4>
+            <button onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
         `;
-
         contenedorProductos.appendChild(tarjetaProducto);
     });
 }
 
-crearTarjetasDeProductos(listaProductos);
+// Función para filtrar productos por nombre
+function filtrarProductos() {
+    const textoBusqueda = document.getElementById("buscador").value.toLowerCase();
+    const productosFiltrados = listaProductos.filter(producto => producto.equipo.toLowerCase().includes(textoBusqueda));
+    crearTarjetasDeProductos(productosFiltrados);
+}
+
+// Escucha el evento 'input' en el campo de búsqueda
+document.getElementById("buscador").addEventListener("input", filtrarProductos);
+
+
+// Llamamos a la función para crear las tarjetas de productos al cargar la página
+window.onload = function() {
+    crearTarjetasDeProductos(listaProductos);
+};
+
 
 
 /*

@@ -49,18 +49,68 @@
     justify-content: center;
 }
 
-/* Estilizo las tarjetas de producto */
 #contenedorProductos div {
     background-color: #333333;
     border: 2px solid #ffd100;
     border-radius: 10px;
     margin: 10px;
     padding: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 200px;
     position: relative;
 }
 
+.oculto {
+    display: none;
+}
+
+#carrito {
+    background-color: #333333;
+    border: 2px solid #ffd100;
+    border-radius: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#tablaCarrito {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaCarrito th,
+#tablaCarrito td {
+    border-bottom: 1px solid #fff;
+    padding: 8px;
+    text-align: left;
+    color: #fff;
+}
+
+#tablaCarrito th {
+    background-color: #ffd100;
+    font-weight: bold;
+}
+
+#totalCarrito {
+    color: #fff;
+    font-weight: bold;
+    text-align: right;
+}
+
+
+.copyr {
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #ffd100;
+}
+
+.copyr div p {
+    color: #fdfdcb;
+}
+
+/*
 #contenedorProductos div::after {
     content: "Add to Cart";
     padding-top: 1.25em;
@@ -91,14 +141,4 @@
 #contenedorProductos div:active::after {
     content: "Added !";
     height: 3.125em;
-}
-
-.copyr {
-    display: flex;
-    justify-content: center;
-    border-top: 2px solid #ffd100;
-}
-
-.copyr div p {
-    color: #fdfdcb;
-}
+} */
