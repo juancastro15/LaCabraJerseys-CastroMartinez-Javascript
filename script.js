@@ -15,6 +15,20 @@ const contenedorProductos = document.getElementById("contenedorProductos");
 const listaCarrito = document.getElementById("listaCarrito");
 let carrito = [];
 
+// Función para guardar el carrito en el almacenamiento local
+function guardarCarritoEnStorage() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+// Función para cargar el carrito desde el almacenamiento local
+function cargarCarritoDesdeStorage() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        mostrarCarrito();
+    }
+}
+
 // Función para agregar un producto al carrito
 function agregarAlCarrito(id) {
     const producto = listaProductos.find(item => item.id === id);
