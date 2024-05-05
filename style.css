@@ -60,32 +60,43 @@
     position: relative;
 }
 
-.oculto {
-    display: none;
-}
-
 #carrito {
     background-color: #333333;
     border: 2px solid #ffd100;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#toggleCarrito {
+    background: none;
+    border: none;
+}
+
+#toggleCarrito img {
+    width: 20px;
+    height: auto;
+}
+
+#contenidoCarrito {
+    display: none;
 }
 
 #tablaCarrito {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 10px;
 }
 
 #tablaCarrito th,
 #tablaCarrito td {
-    border-bottom: 1px solid #fff;
-    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
     text-align: left;
-    color: #fff;
 }
 
 #tablaCarrito th {

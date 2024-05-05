@@ -70,20 +70,23 @@
     <!-- Fin del Main -->
     
     <!-- Inicio del carrito -->
-    <aside id="carrito" class="oculto">
-        <h2>Carrito de Compras</h2>
-        <table id="tablaCarrito">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="listaCarrito"></tbody>
-        </table>
-        <p id="totalCarrito">Total: $0</p>
+    <aside id="carrito">
+        <button id="toggleCarrito"><img src="logos/carrito-logo.png" alt="Icono de carrito"></button>
+        <div id="contenidoCarrito">
+            <table id="tablaCarrito">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="listaCarrito"></tbody>
+            </table>
+            <p id="totalCarrito">Total: $0</p>
+        </div>
     </aside>
     <!-- Fin del carrito -->
 
