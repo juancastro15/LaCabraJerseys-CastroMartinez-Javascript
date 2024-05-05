@@ -1,4 +1,4 @@
-// Defino mis camisetas de fútbol
+// Definimos nuestros productos
 let listaProductos = [
     {id: 1, equipo: "Real Madrid", precio: 50, stock: 3, rutaImagen: "real-madrid.webp" },
     {id: 2, equipo: "Barcelona", precio: 45, stock: 8, rutaImagen: "barcelona-fc.webp" },
@@ -18,24 +18,85 @@ let carrito = [];
 // Función para agregar un producto al carrito
 function agregarAlCarrito(id) {
     const producto = listaProductos.find(item => item.id === id);
-    const nuevoCarrito = [...carrito, producto]; // Creamos una nueva copia del carrito añadiendo el nuevo producto
-    carrito = nuevoCarrito; // Actualizamos la referencia del carrito
+    carrito = producto ? [...carrito, producto] : carrito;
     mostrarCarrito();
 }
 
-// Función para mostrar los productos en el carrito
-function mostrarCarrito() {
-    listaCarrito.innerHTML = "";
-    carrito.forEach(({ equipo }) => { // Desestructuración aquí
-        const li = document.createElement("li");
-        li.textContent = equipo; // Usamos la propiedad desestructurada directamente
-        listaCarrito.appendChild(li);
-    });
+function agregarAlCarrito(id) {
+    const productoExistenteIndex = carrito.findIndex(item => item.id === id); // Buscamos el índice del producto en el carrito
+    if (productoExistenteIndex !== -1) {
+        // Si el producto ya está en el carrito, actualizamos su cantidad y precio total
+        carrito[productoExistenteIndex].cantidad++;
+        carrito[productoExistenteIndex].precioTotal = carrito[productoExistenteIndex].cantidad * carrito[productoExistenteIndex].precio;
+    } else {
+        // Si el producto no está en el carrito, lo agregamos al carrito con una cantidad inicial de 1
+        const producto = listaProductos.find(item => item.id === id);
+        carrito.push({...producto, cantidad: 1, precioTotal: producto.precio});
+    }
+    mostrarCarrito(); // Mostramos el carrito actualizado
 }
+
+function mostrarCarrito() {
+    listaCarrito.innerHTML = `
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+    let totalCarrito = 0;
+    carrito.forEach(({ id, equipo, precio, cantidad, precioTotal }) => {
+        totalCarrito += precioTotal;
+        listaCarrito.innerHTML += `
+            <tr>
+                <td>${equipo}</td>
+                <td>$${precio}</td>
+                <td>
+                    <button onclick="disminuirCantidad(${id})">-</button>
+                    ${cantidad}
+                    <button onclick="aumentarCantidad(${id})">+</button>
+                </td>
+                <td>$${precioTotal}</td>
+                <td><button onclick="eliminarProductoDelCarrito(${id})">Eliminar</button></td>
+            </tr>
+        `;
+    });
+    const totalCarritoElement = document.getElementById("totalCarrito");
+    totalCarritoElement.textContent = `Total: $${totalCarrito}`;
+}
+
+function aumentarCantidad(id) {
+    const producto = carrito.find(item => item.id === id);
+    producto.cantidad++;
+    producto.precioTotal = producto.cantidad * producto.precio;
+    mostrarCarrito();
+}
+
+function disminuirCantidad(id) {
+    const producto = carrito.find(item => item.id === id);
+    if (producto.cantidad > 1) {
+        producto.cantidad--;
+        producto.precioTotal = producto.cantidad * producto.precio;
+    } else {
+        eliminarProductoDelCarrito(id); // Si la cantidad es 1 o menos, eliminamos el producto del carrito
+    }
+    mostrarCarrito();
+}
+
+function eliminarProductoDelCarrito(id) {
+    carrito = carrito.filter(item => item.id !== id); // Filtramos el carrito para eliminar el producto con el ID dado
+    mostrarCarrito(); // Volvemos a mostrar el carrito actualizado
+}
+
 
 // Creando las tarjetas del producto
 function crearTarjetasDeProductos(productos) {
-    contenedorProductos.innerHTML = ""; // Limpiamos el contenedor antes de agregar las tarjetas
+    contenedorProductos.innerHTML = "";
     productos.forEach(producto => {
         const tarjetaProducto = document.createElement("div");
         tarjetaProducto.innerHTML = `
@@ -67,11 +128,7 @@ const contenidoCarrito = document.getElementById("contenidoCarrito");
 // Escuchar clics en el botón de alternar el carrito
 toggleCarritoBtn.addEventListener("click", () => {
     // Alternar la visibilidad del contenido del carrito
-    if (contenidoCarrito.style.display === "block") {
-        contenidoCarrito.style.display = "none";
-    } else {
-        contenidoCarrito.style.display = "block";
-    }
+    contenidoCarrito.style.display = contenidoCarrito.style.display === "block" ? "none" : "block";
 });
 
 // Llamamos a la función para crear las tarjetas de productos al cargar la página
