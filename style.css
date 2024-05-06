@@ -165,23 +165,9 @@
 
 @media screen and (max-width: 480px) {
     #carrito {
-        top: auto; /* Quita la posición fija */
-        bottom: 20px; /* Alinea el carrito en la parte inferior */
-        right: 50%; /* Centra el carrito horizontalmente */
-        transform: translateX(50%); /* Centra el carrito horizontalmente */
-        width: 90%; /* Ancho más pequeño para dispositivos móviles */
-        max-width: 300px; /* Ancho máximo para dispositivos móviles */
+        
         padding: 10px; /* Espaciado más pequeño */
-    }
-
-    #totalCarrito {
-        text-align: left; /* Alinea el texto a la izquierda */
-    }
-
-    #tablaCarrito th,
-    #tablaCarrito td {
-        padding: 5px; /* Espaciado más pequeño */
-    }
+    }  
 }
 
 #toggleCarrito {
@@ -211,6 +197,19 @@
     text-align: left;
 }
 
+@media screen and (max-width: 480px) {
+    #tablaCarrito th,
+    #tablaCarrito td {
+        font-size: 14px;
+        padding: 5px; /* Espaciado más pequeño */
+    }
+
+    #tablaCarrito button {
+        font-size: 7px; /* Tamaño de fuente más pequeño */
+        padding: 4px 8px; /* Espaciado más pequeño */
+    }
+}
+
 #tablaCarrito th {
     background-color: #ffd100;
     font-weight: bold;
@@ -220,6 +219,12 @@
     color: #fff;
     font-weight: bold;
     text-align: right;
+}
+
+@media screen and (max-width: 480px) {
+    #totalCarrito {
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
 }
 
 .novedades {
