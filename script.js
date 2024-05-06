@@ -116,8 +116,8 @@ function crearTarjetasDeProductos(productos) {
         tarjetaProducto.innerHTML = `
             <img src="./camisetas/${producto.rutaImagen}" />
             <h3>${producto.equipo}</h3>
-            <h4>Precio: ${producto.precio}</h4>
-            <button onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
+            <h4>$ ${producto.precio}</h4>
+            <button class="agregar-carrito-btn" onclick="agregarAlCarrito(${producto.id})">AGREGAR</button>
         `;
         contenedorProductos.appendChild(tarjetaProducto);
     });
