@@ -14,7 +14,7 @@
 
 @media screen and (max-width: 480px) {
     .brand div img {
-        width: 150px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
+        width: 150px;
     }
 }
 
@@ -46,8 +46,8 @@
 
 @media screen and (max-width: 480px) {
     .intro div p {
-        font-size: 20px; /* Ajusta el tamaño del texto para dispositivos móviles */
-        margin: 15px; /* Ajusta el margen para dispositivos móviles */
+        font-size: 20px;
+        margin: 15px;
     }
 }
 
@@ -67,8 +67,8 @@
 
 @media screen and (max-width: 480px) {
     .cata img {
-        width: 100%; /* La imagen ocupa todo el ancho de su contenedor */
-        height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -80,7 +80,7 @@
     color: #333333;
     font-size: 16px;
     width: 100%;
-    box-sizing: border-box; /* Para que el padding no afecte el ancho total */
+    box-sizing: border-box;
     margin-bottom: 20px;
 }
 
@@ -105,7 +105,7 @@
 @media screen and (max-width: 480px) {
     #contenedorProductos div {
         width: 90%; 
-        margin: 5px auto; /* Margen más pequeño y centrado horizontalmente */
+        margin: 5px auto;
     }
 }
 
@@ -165,8 +165,7 @@
 
 @media screen and (max-width: 480px) {
     #carrito {
-        
-        padding: 10px; /* Espaciado más pequeño */
+        padding: 10px; 
     }  
 }
 
@@ -201,12 +200,12 @@
     #tablaCarrito th,
     #tablaCarrito td {
         font-size: 14px;
-        padding: 5px; /* Espaciado más pequeño */
+        padding: 5px;
     }
 
     #tablaCarrito button {
-        font-size: 7px; /* Tamaño de fuente más pequeño */
-        padding: 4px 8px; /* Espaciado más pequeño */
+        font-size: 7px;
+        padding: 4px 8px;
     }
 }
 
@@ -223,7 +222,7 @@
 
 @media screen and (max-width: 480px) {
     #totalCarrito {
-        text-align: left; /* Alinea el texto a la izquierda */
+        text-align: left;
     }
 }
 
@@ -245,4 +244,3 @@
 .copyr div p {
     color: #fdfdcb;
 }
-

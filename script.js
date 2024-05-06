@@ -15,12 +15,12 @@ const contenedorProductos = document.getElementById("contenedorProductos");
 const listaCarrito = document.getElementById("listaCarrito");
 let carrito = [];
 
-// Función para guardar el carrito en el almacenamiento local
+// Almacenamiento local (carrito)
 function guardarCarritoEnStorage() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-// Función para cargar el carrito desde el almacenamiento local
+// Cargar el carrito desde el almacenamiento local
 function cargarCarritoDesdeStorage() {
     const carritoGuardado = localStorage.getItem('carrito');
     if (carritoGuardado) {
@@ -29,7 +29,7 @@ function cargarCarritoDesdeStorage() {
     }
 }
 
-// Función para agregar un producto al carrito
+// Agregar un producto al carrito
 function agregarAlCarrito(id) {
     const producto = listaProductos.find(item => item.id === id);
     carrito = producto ? [...carrito, producto] : carrito;
@@ -123,7 +123,7 @@ function crearTarjetasDeProductos(productos) {
     });
 }
 
-// Función para filtrar productos por nombre
+// Filtrar productos por nombre
 function filtrarProductos() {
     const textoBusqueda = document.getElementById("buscador").value.toLowerCase();
     const productosFiltrados = listaProductos.filter(producto => producto.equipo.toLowerCase().includes(textoBusqueda));
