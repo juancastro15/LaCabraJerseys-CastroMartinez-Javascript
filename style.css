@@ -109,6 +109,10 @@
     }
 }
 
+#contenedorProductos div h3, h4 {
+    font-size: 15px;
+}
+
 .agregar-carrito-btn {
     display: block;
     width: 100%;

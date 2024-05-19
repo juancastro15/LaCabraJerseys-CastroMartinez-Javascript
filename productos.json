@@ -15,7 +15,7 @@
     {"id": 31, "equipo": "Milan", "categoria": "Gorra", "precio": 18, "stock": 7, "rutaImagen": "milan-gorra.jpeg"},
     {"id": 32, "equipo": "Chelsea", "categoria": "Gorra", "precio": 22, "stock": 3, "rutaImagen": "chelsea-gorra.webp"},
     {"id": 41, "equipo": "Barcelona", "categoria": "Shorts", "precio": 28, "stock": 8, "rutaImagen": "barcelona-shorts.jpeg"},
-    {"id": 42, "equipo": "Man. United", "categoria": "Shorts", "precio": 25, "stock": 12, "rutaImagen": "man-united-shorts.webp"},
+    {"id": 42, "equipo": "Manchester United", "categoria": "Shorts", "precio": 25, "stock": 12, "rutaImagen": "man-united-shorts.webp"},
     {"id": 43, "equipo": "Boca Juniors", "categoria": "Piluso", "precio": 25, "stock": 5, "rutaImagen": "boca-bucket-hat.jpeg"},
     {"id": 44, "equipo": "Maradona Eterno", "categoria": "Piluso", "precio": 25, "stock": 5, "rutaImagen": "maradona-hat.webp"}
 ]
