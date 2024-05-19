@@ -117,7 +117,7 @@ function crearTarjetasDeProductos(productos) {
         const tarjetaProducto = document.createElement("div");
         tarjetaProducto.innerHTML = `
             <img src="./camisetas/${producto.rutaImagen}" />
-            <h3>${producto.equipo}</h3>
+            <h3>${producto.categoria} ${producto.equipo}</h3>
             <h4>$ ${producto.precio}</h4>
             <button class="agregar-carrito-btn" onclick="agregarAlCarrito(${producto.id})">AGREGAR</button>
         `;
@@ -153,6 +153,7 @@ window.onload = function() {
     cargarProductosDesdeJSON(); // Llama a la función para cargar los productos desde el archivo JSON
 };
 
+// Notificacion de agregado al carrito
 function lanzarTostada (text, gravity, position,duration) {
     Toastify({
         text,
