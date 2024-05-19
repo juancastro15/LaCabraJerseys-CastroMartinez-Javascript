@@ -1,19 +1,25 @@
-// Definimos nuestros productos
-let listaProductos = [
-    {id: 1, equipo: "Real Madrid", precio: 50, stock: 3, rutaImagen: "real-madrid.webp" },
-    {id: 2, equipo: "Barcelona", precio: 45, stock: 8, rutaImagen: "barcelona-fc.webp" },
-    {id: 3, equipo: "Manchester United", precio: 40, stock: 12, rutaImagen: "man-united.jpeg" },
-    {id: 4, equipo: "Juventus", precio: 55, stock: 6, rutaImagen: "juventus.png" },
-    {id: 5, equipo: "Bayern Munich", precio: 60, stock: 7, rutaImagen: "bayern.webp" },
-    {id: 6, equipo: "Liverpool", precio: 50, stock: 1, rutaImagen: "liverpool.webp" },
-    {id: 7, equipo: "Paris Saint-Germain", precio: 55, stock: 5, rutaImagen: "psg.jpeg" },
-    {id: 8, equipo: "Manchester City", precio: 45, stock: 10, rutaImagen: "man-city.webp" }
-];
-
 // Variables
 const contenedorProductos = document.getElementById("contenedorProductos");
 const listaCarrito = document.getElementById("listaCarrito");
 let carrito = [];
+
+// Cargar productos desde el archivo JSON
+function cargarProductosDesdeJSON() {
+    fetch('productos.json')
+        .then(response => response.json())
+        .then(data => {
+            listaProductos = data;
+            crearTarjetasDeProductos(listaProductos);
+        })
+        .catch(error => console.error('Error al cargar productos desde JSON:', error));
+}
+
+// Llamamos a la función para cargar productos desde el archivo JSON al cargar la página
+window.onload = function() {
+    console.log("La página se ha cargado correctamente.");
+    cargarProductosDesdeJSON(); // Llama a la función para cargar los productos desde el archivo JSON
+};
+
 
 // Almacenamiento local (carrito)
 function guardarCarritoEnStorage() {
@@ -29,19 +35,14 @@ function cargarCarritoDesdeStorage() {
     }
 }
 
-// Agregar un producto al carrito
 function agregarAlCarrito(id) {
-    const producto = listaProductos.find(item => item.id === id);
-    carrito = producto ? [...carrito, producto] : carrito;
-    mostrarCarrito();
-}
-
-function agregarAlCarrito(id) {
-    const productoExistenteIndex = carrito.findIndex(item => item.id === id); // Buscamos el índice del producto en el carrito
+    const productoExistenteIndex = carrito.findIndex(item => item.id === id);
     if (productoExistenteIndex !== -1) {
         // Si el producto ya está en el carrito, actualizamos su cantidad y precio total
         carrito[productoExistenteIndex].cantidad++;
         carrito[productoExistenteIndex].precioTotal = carrito[productoExistenteIndex].cantidad * carrito[productoExistenteIndex].precio;
+        // Agregar aquí la notificación
+        lanzarTostada("Agregado!", "top", "left", "3000");
     } else {
         // Si el producto no está en el carrito, lo agregamos al carrito con una cantidad inicial de 1
         const producto = listaProductos.find(item => item.id === id);
@@ -49,6 +50,7 @@ function agregarAlCarrito(id) {
     }
     mostrarCarrito(); // Mostramos el carrito actualizado
 }
+
 
 function mostrarCarrito() {
     listaCarrito.innerHTML = `
@@ -148,5 +150,14 @@ toggleCarritoBtn.addEventListener("click", () => {
 // Llamamos a la función para crear las tarjetas de productos al cargar la página
 window.onload = function() {
     console.log("La página se ha cargado correctamente.");
-    crearTarjetasDeProductos(listaProductos);
+    cargarProductosDesdeJSON(); // Llama a la función para cargar los productos desde el archivo JSON
 };
+
+function lanzarTostada (text, gravity, position,duration) {
+    Toastify({
+        text,
+        gravity,
+        position,
+        duration,
+    }).showToast()
+}
