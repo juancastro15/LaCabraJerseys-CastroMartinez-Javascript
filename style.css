@@ -72,6 +72,13 @@
     }
 }
 
+.buscador-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 #buscador {
     padding: 10px;
     border: 2px solid #ffd100;
@@ -79,10 +86,21 @@
     background-color: #f5f5f5;
     color: #333333;
     font-size: 16px;
-    width: 100%;
+    width: 70%;
     box-sizing: border-box;
-    margin-bottom: 20px;
 }
+
+#filtros {
+    padding: 10px;
+    border: 2px solid #ffd100;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    color: #333333;
+    font-size: 16px;
+    width: 28%;
+    box-sizing: border-box;
+}
+
 
 #contenedorProductos {
     display: flex;

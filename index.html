@@ -68,7 +68,17 @@
     <main class="cata">
         <h2>Nuestro Catalogo</h2>
         <!-- Agrega un input para el buscador -->
-        <input type="text" id="buscador" placeholder="Buscar producto...">
+        <div class="buscador-container">
+            <input type="text" id="buscador" placeholder="Buscar producto...">
+            <select id="filtros">
+                <option value="">Todos</option>
+                <option value="Camiseta">Camisetas</option>
+                <option value="Bufanda">Bufandas</option>
+                <option value="Gorra">Gorras</option>
+                <option value="Shorts">Shorts</option>
+                <option value="Piluso">Piluso</option>
+            </select>
+        </div>
         <div id="contenedorProductos"></div>
     </main>
     <!-- Fin del Main -->

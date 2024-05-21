@@ -162,3 +162,19 @@ function lanzarTostada (text, gravity, position,duration) {
         duration,
     }).showToast()
 }
+
+/* oculta de momento
+// Almacenamiento local (carrito)
+function guardarCarritoEnStorage() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+// Cargar el carrito desde el almacenamiento local
+function cargarCarritoDesdeStorage() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        mostrarCarrito();
+    }
+}
+*/
