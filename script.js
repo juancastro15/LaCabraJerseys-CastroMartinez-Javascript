@@ -18,6 +18,7 @@ function cargarProductosDesdeJSON() {
 window.onload = function() {
     console.log("La página se ha cargado correctamente.");
     cargarProductosDesdeJSON(); // Llama a la función para cargar los productos desde el archivo JSON
+    cargarCarritoDesdeStorage(); // Cargar el carrito desde el almacenamiento local
 };
 
 
@@ -49,8 +50,8 @@ function agregarAlCarrito(id) {
         carrito.push({...producto, cantidad: 1, precioTotal: producto.precio});
     }
     mostrarCarrito(); // Mostramos el carrito actualizado
+    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
 }
-
 
 function mostrarCarrito() {
     listaCarrito.innerHTML = `
@@ -91,6 +92,7 @@ function aumentarCantidad(id) {
     producto.cantidad++;
     producto.precioTotal = producto.cantidad * producto.precio;
     mostrarCarrito();
+    guardarCarritoEnStorage();
 }
 
 function disminuirCantidad(id) {
@@ -102,11 +104,13 @@ function disminuirCantidad(id) {
         eliminarProductoDelCarrito(id); // Si la cantidad es 1 o menos, eliminamos el producto del carrito
     }
     mostrarCarrito();
+    guardarCarritoEnStorage();
 }
 
 function eliminarProductoDelCarrito(id) {
     carrito = carrito.filter(item => item.id !== id); // Filtramos el carrito para eliminar el producto con el ID dado
     mostrarCarrito(); // Volvemos a mostrar el carrito actualizado
+    guardarCarritoEnStorage();
 }
 
 
