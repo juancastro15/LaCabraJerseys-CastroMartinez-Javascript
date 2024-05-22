@@ -219,7 +219,6 @@
     margin-right: 10px;
 }
 
-#tablaCarrito th,
 #tablaCarrito td {
     border-bottom: 1px solid #ddd;
     padding: 10px;
@@ -227,7 +226,6 @@
 }
 
 @media screen and (max-width: 480px) {
-    #tablaCarrito th,
     #tablaCarrito td {
         font-size: 14px;
         padding: 5px;
@@ -239,9 +237,13 @@
     }
 }
 
-#tablaCarrito th {
+.finalizar-compra-btn {
+    width: 100%;
     background-color: #ffd100;
-    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
 }
 
 #totalCarrito {

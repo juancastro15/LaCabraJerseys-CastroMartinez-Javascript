@@ -41,6 +41,7 @@ function agregarAlCarrito(id) {
     if (productoExistenteIndex !== -1) {
         carrito[productoExistenteIndex].cantidad++;
         carrito[productoExistenteIndex].precioTotal = carrito[productoExistenteIndex].cantidad * carrito[productoExistenteIndex].precio;
+        lanzarTostada("Agregado!", "top", "left", "3000");
     } else {
         const producto = listaProductos.find(item => item.id === id);
         carrito.push({...producto, cantidad: 1, precioTotal: producto.precio});
@@ -53,12 +54,9 @@ function mostrarCarrito() {
     listaCarrito.innerHTML = `
         <thead>
             <tr>
-                <th></th>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th></th>
+                <td colspan="6" style="text-align: center;">
+                <button onclick="finalizarCompra()" class="finalizar-compra-btn">Finalizar compra</button>
+                </td>
             </tr>
         </thead>
         <tbody>
