@@ -2,6 +2,7 @@
 const contenedorProductos = document.getElementById("contenedorProductos");
 const listaCarrito = document.getElementById("listaCarrito");
 let carrito = [];
+let listaProductos = [];
 
 // Cargar productos desde el archivo JSON
 function cargarProductosDesdeJSON() {
@@ -17,10 +18,9 @@ function cargarProductosDesdeJSON() {
 // Llamamos a la función para cargar productos desde el archivo JSON al cargar la página
 window.onload = function() {
     console.log("La página se ha cargado correctamente.");
-    cargarProductosDesdeJSON(); // Llama a la función para cargar los productos desde el archivo JSON
-    cargarCarritoDesdeStorage(); // Cargar el carrito desde el almacenamiento local
+    cargarProductosDesdeJSON();
+    cargarCarritoDesdeStorage();
 };
-
 
 // Almacenamiento local (carrito)
 function guardarCarritoEnStorage() {
@@ -39,17 +39,13 @@ function cargarCarritoDesdeStorage() {
 function agregarAlCarrito(id) {
     const productoExistenteIndex = carrito.findIndex(item => item.id === id);
     if (productoExistenteIndex !== -1) {
-        // Si el producto ya está en el carrito, actualizamos su cantidad y precio total
         carrito[productoExistenteIndex].cantidad++;
         carrito[productoExistenteIndex].precioTotal = carrito[productoExistenteIndex].cantidad * carrito[productoExistenteIndex].precio;
-        // Agregar aquí la notificación
-        lanzarTostada("Agregado!", "top", "left", "3000");
     } else {
-        // Si el producto no está en el carrito, lo agregamos al carrito con una cantidad inicial de 1
         const producto = listaProductos.find(item => item.id === id);
         carrito.push({...producto, cantidad: 1, precioTotal: producto.precio});
     }
-    mostrarCarrito(); // Mostramos el carrito actualizado
+    mostrarCarrito();
     guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
 }
 
@@ -57,6 +53,7 @@ function mostrarCarrito() {
     listaCarrito.innerHTML = `
         <thead>
             <tr>
+                <th></th>
                 <th>Producto</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
@@ -67,10 +64,13 @@ function mostrarCarrito() {
         <tbody>
     `;
     let totalCarrito = 0;
-    carrito.forEach(({ id, equipo, precio, cantidad, precioTotal }) => {
+    carrito.forEach(({ id, equipo, precio, cantidad, precioTotal, rutaImagen }) => {
         totalCarrito += precioTotal;
         listaCarrito.innerHTML += `
             <tr>
+                <td>
+                    <img src="./camisetas/${rutaImagen}" alt="${equipo}">
+                </td>
                 <td>${equipo}</td>
                 <td>$${precio}</td>
                 <td>
@@ -87,12 +87,13 @@ function mostrarCarrito() {
     totalCarritoElement.textContent = `Total: $${totalCarrito}`;
 }
 
+
 function aumentarCantidad(id) {
     const producto = carrito.find(item => item.id === id);
     producto.cantidad++;
     producto.precioTotal = producto.cantidad * producto.precio;
     mostrarCarrito();
-    guardarCarritoEnStorage();
+    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
 }
 
 function disminuirCantidad(id) {
@@ -104,15 +105,14 @@ function disminuirCantidad(id) {
         eliminarProductoDelCarrito(id); // Si la cantidad es 1 o menos, eliminamos el producto del carrito
     }
     mostrarCarrito();
-    guardarCarritoEnStorage();
+    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
 }
 
 function eliminarProductoDelCarrito(id) {
     carrito = carrito.filter(item => item.id !== id); // Filtramos el carrito para eliminar el producto con el ID dado
     mostrarCarrito(); // Volvemos a mostrar el carrito actualizado
-    guardarCarritoEnStorage();
+    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
 }
-
 
 // Creando las tarjetas del producto
 function crearTarjetasDeProductos(productos) {
@@ -128,6 +128,18 @@ function crearTarjetasDeProductos(productos) {
         contenedorProductos.appendChild(tarjetaProducto);
     });
 }
+
+// Filtrar productos por categoría
+document.getElementById("filtros").addEventListener("change", filtrarPorCategoria);
+
+function filtrarPorCategoria() {
+    const categoriaSeleccionada = document.getElementById("filtros").value;
+    const productosFiltrados = categoriaSeleccionada 
+        ? listaProductos.filter(producto => producto.categoria === categoriaSeleccionada)
+        : listaProductos;
+    crearTarjetasDeProductos(productosFiltrados);
+}
+
 
 // Filtrar productos por nombre
 function filtrarProductos() {
