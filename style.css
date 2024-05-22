@@ -238,12 +238,22 @@
 }
 
 .finalizar-compra-btn {
+    display: block;
     width: 100%;
-    background-color: #ffd100;
-    color: #fff;
     padding: 10px;
+    background-color: #ffd100;
+    color: #333;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.finalizar-compra-btn:hover {
+    background-color: #e5be00;
 }
 
 #totalCarrito {

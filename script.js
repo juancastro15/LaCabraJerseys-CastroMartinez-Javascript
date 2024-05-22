@@ -15,7 +15,7 @@ function cargarProductosDesdeJSON() {
         .catch(error => console.error('Error al cargar productos desde JSON:', error));
 }
 
-// Llamamos a la función para cargar productos desde el archivo JSON al cargar la página
+// Función para cargar productos desde el archivo JSON
 window.onload = function() {
     console.log("La página se ha cargado correctamente.");
     cargarProductosDesdeJSON();
@@ -45,6 +45,7 @@ function agregarAlCarrito(id) {
     } else {
         const producto = listaProductos.find(item => item.id === id);
         carrito.push({...producto, cantidad: 1, precioTotal: producto.precio});
+        lanzarTostada("Agregado!", "top", "left", "3000");
     }
     mostrarCarrito();
     guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
@@ -91,7 +92,7 @@ function aumentarCantidad(id) {
     producto.cantidad++;
     producto.precioTotal = producto.cantidad * producto.precio;
     mostrarCarrito();
-    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
+    guardarCarritoEnStorage();
 }
 
 function disminuirCantidad(id) {
@@ -100,16 +101,16 @@ function disminuirCantidad(id) {
         producto.cantidad--;
         producto.precioTotal = producto.cantidad * producto.precio;
     } else {
-        eliminarProductoDelCarrito(id); // Si la cantidad es 1 o menos, eliminamos el producto del carrito
+        eliminarProductoDelCarrito(id);
     }
     mostrarCarrito();
-    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
+    guardarCarritoEnStorage();
 }
 
 function eliminarProductoDelCarrito(id) {
     carrito = carrito.filter(item => item.id !== id); // Filtramos el carrito para eliminar el producto con el ID dado
     mostrarCarrito(); // Volvemos a mostrar el carrito actualizado
-    guardarCarritoEnStorage(); // Guardar el carrito en el almacenamiento local
+    guardarCarritoEnStorage();
 }
 
 // Creando las tarjetas del producto
@@ -138,7 +139,6 @@ function filtrarPorCategoria() {
     crearTarjetasDeProductos(productosFiltrados);
 }
 
-
 // Filtrar productos por nombre
 function filtrarProductos() {
     const textoBusqueda = document.getElementById("buscador").value.toLowerCase();
@@ -157,14 +157,13 @@ const contenidoCarrito = document.getElementById("contenidoCarrito");
 
 // Escuchar clics en el botón de alternar el carrito
 toggleCarritoBtn.addEventListener("click", () => {
-    // Alternar la visibilidad del contenido del carrito
     contenidoCarrito.style.display = contenidoCarrito.style.display === "block" ? "none" : "block";
 });
 
-// Llamamos a la función para crear las tarjetas de productos al cargar la página
+// función para crear las tarjetas de productos al cargar la página
 window.onload = function() {
     console.log("La página se ha cargado correctamente.");
-    cargarProductosDesdeJSON(); // Llama a la función para cargar los productos desde el archivo JSON
+    cargarProductosDesdeJSON();
 };
 
 // Notificacion de agregado al carrito
@@ -177,18 +176,26 @@ function lanzarTostada (text, gravity, position,duration) {
     }).showToast()
 }
 
-/* oculta de momento
-// Almacenamiento local (carrito)
-function guardarCarritoEnStorage() {
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-}
-
-// Cargar el carrito desde el almacenamiento local
-function cargarCarritoDesdeStorage() {
-    const carritoGuardado = localStorage.getItem('carrito');
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
+// Función para finalizar la compra
+function finalizarCompra() {
+    if (carrito.length === 0) {
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "El carrito está vacío",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } else {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Su compra fue ejecutada con éxito",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        carrito = [];
         mostrarCarrito();
+        guardarCarritoEnStorage(); // Guardar el carrito vacío en el almacenamiento local
     }
 }
-*/
