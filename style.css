@@ -101,7 +101,6 @@
     box-sizing: border-box;
 }
 
-
 #contenedorProductos {
     display: flex;
     flex-wrap: wrap;
