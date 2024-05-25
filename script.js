@@ -4,7 +4,7 @@ const listaCarrito = document.getElementById("listaCarrito");
 let carrito = [];
 let listaProductos = [];
 
-// Cargar productos desde el archivo JSON
+// Productos archivo JSON
 function cargarProductosDesdeJSON() {
     fetch('productos.json')
         .then(response => response.json())
@@ -176,7 +176,7 @@ function lanzarTostada (text, gravity, position,duration) {
     }).showToast()
 }
 
-// Función para finalizar la compra
+// Notificacion para finalizar la compra
 function finalizarCompra() {
     if (carrito.length === 0) {
         Swal.fire({
@@ -196,6 +196,6 @@ function finalizarCompra() {
         });
         carrito = [];
         mostrarCarrito();
-        guardarCarritoEnStorage(); // Guardar el carrito vacío en el almacenamiento local
+        guardarCarritoEnStorage();
     }
 }
